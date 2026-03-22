@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Name • Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --text: #e0e0e0;
+      --text-light: #a0a0a0;
+      --accent: #00d4ff;
+      --accent-dark: #0099bb;
+      --card: #161616;
+      --border: #222;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ─── Header / Hero ─── */
+    header {
+      height: 100vh;
+      min-height: 680px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, #0a0a0a 0%, #111 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 80%, rgba(0,212,255,0.08) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 0 20px;
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 8vw, 6.5rem);
+      font-weight: 700;
+      letter-spacing: -2px;
+      margin-bottom: 0.8rem;
+      background: linear-gradient(90deg, #fff, var(--accent), #fff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      color: var(--text-light);
+      margin-bottom: 2.5rem;
+    }
+
+    .social-links a {
+      color: var(--text);
+      font-size: 1.8rem;
+      margin: 0 1rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    /* ─── Main Content ─── */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    section {
+      margin-bottom: 10rem;
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background: var(--accent);
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    /* Cards grid */
+    .projects-grid,
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.35s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-12px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 40px rgba(0,212,255,0.12);
+    }
+
+    .card-img {
+      height: 220px;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #444;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-body {
+      padding: 1.8rem;
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .card p {
+      color: var(--text-light);
+      font-size: 0.98rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .tag {
+      background: rgba(0,212,255,0.1);
+      color: var(--accent);
+      padding: 0.35rem 0.9rem;
+      border-radius: 30px;
+      font-size: 0.82rem;
+      border: 1px solid rgba(0,212,255,0.2);
+    }
+
+    /* About */
+    .about-text {
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: 1.15rem;
+      color: var(--text-light);
+      text-align: center;
+    }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+    }
+
+    .email-link {
+      display: inline-block;
+      font-size: 1.6rem;
+      color: var(--accent);
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border: 2px solid var(--accent);
+      border-radius: 50px;
+      margin-top: 2rem;
+      transition: all 0.3s;
+    }
+
+    .email-link:hover {
+      background: var(--accent);
+      color: #000;
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem 6rem;
+      color: #555;
+      font-size: 0.95rem;
+      border-top: 1px solid #222;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 3.8rem; }
+      .subtitle { font-size: 1.3rem; }
+      main { padding: 4rem 1.2rem; }
+      section { margin-bottom: 7rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="hero-content">
+      <h1>Hi, I'm Suryabhan Baviskar</h1>
+      <div class="subtitle">Frontend Developer</div>
+
+      <div class="social-links">
+        <a href="https://github.com/Baviskar07" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/suryabhan-baviskar-02252b3a3/" target="_blank">LinkedIn</a>
+        <!-- <a href="https://twitter.com" target="_blank">X / Twitter</a>
+        <a href="https://dribbble.com" target="_blank">Dribbble</a> -->
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="about-text">
+        <p>Recent BSc Computer Science graduate with knowledge of programming and database fundamentals.</p>
+        <p>Skilled in C, HTML, SQL and PL/SQL. Developed a college project on an online tiffin service platform.</p>
+        <p>Interested in starting a career in software or web development to gain practical experience and strengthen technical skills.</p>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Selected Projects</h2>
+      <div class="projects-grid">
+
+        <div class="card">
+          <div class="card-img">Project Image / Video Placeholder</div>
+          <div class="card-body">
+            <h3>Motion Landing Page</h3>
+            <p>Experimental landing page with 3D animations, smooth scroll and WebGL effects built with React + Three.js + GSAP.</p>
+            <div class="tags">
+              <span class="tag">React</span>
+              <span class="tag">Three.js</span>
+              <span class="tag">GSAP</span>
+              <span class="tag">WebGL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">Dashboard UI</div>
+          <div class="card-body">
+            <h3>Analytics Dashboard</h3>
+            <p>Modern SaaS dashboard with dark mode, charts, drag & drop widgets and real-time data visualization.</p>
+            <div class="tags">
+              <span class="tag">Next.js</span>
+              <span class="tag">Tailwind</span>
+              <span class="tag">Recharts</span>
+              <span class="tag">TypeScript</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img">Mobile App Concept</div>
+          <div class="card-body">
+            <h3>Habit Tracker App</h3>
+            <p>iOS-style habit building application concept with micro-interactions and delightful UX.</p>
+            <div class="tags">
+              <span class="tag">UI/UX</span>
+              <span class="tag">Figma</span>
+              <span class="tag">Framer</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="card">
+          <div class="card-body">
+            <h3>Languages</h3>
+            <div class="tags">
+              <span class="tag">C</span>
+              <span class="tag">Python</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <h3>Design & Animation</h3>
+            <div class="tags">
+              <span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span>
+              <span class="tag">Bootstrap</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <h3>Tools</h3>
+            <div class="tags">
+              <span class="tag">Git • GitHub</span><span class="tag">My SQL</span><span class="tag">VS Code</span>
+              <span class="tag">XAMPP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Let's Create Something Great</h2>
+      <p style="font-size:1.3rem; color:var(--text-light); margin:2rem 0;">
+        I'm currently available for freelance and full-time opportunities.
+      </p>
+      <a href="mailto:suryabhanbaviskar07@gmail.com" class="email-link">
+        suryabhanbaviskar07@gmail.com →
+      </a>
+    </section>
+
+  </main>
+
+</body>
+</html>
